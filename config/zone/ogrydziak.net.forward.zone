@@ -1,36 +1,35 @@
-$TTL 3600
+$TTL 1h
 @               IN      SOA     ns1.ogrydziak.net. god.ogrydziak.net. (
-                20200815;       Serial
-                3600;           Refresh (1 hour)
-                120;            Retry (120 sec)
-                3600;           Expire (1 hour)
-                3600);          Default TTL (1 hour)
-
-                IN      NS      ns1.ogrydziak.net.
-
-$ORIGIN ogrydziak.net.
-
-;net infastructure
-gateway         IN      A       10.0.0.255
-switch          IN      A       10.0.30.2
-
-;docker
-blackskull      IN      A       10.0.30.10
+                20210107;       #Serial
+                1h;		#Refresh              #default value in minutes
+                120;            #Retry                #default value in seconds
+                1h;             #Expire               #default value in minutes
+                1h);		#Negative caching TTL #default value in minutes
 
 ;name servers
-ns1             IN      A       10.0.20.100
+                IN      NS      ns1.ogrydziak.net.
 
-;time servers
-ntp-a           IN      A       10.0.20.105
+;net infastructure
+gateway         IN      A       10.0.20.1
+switch          IN      A       10.0.20.2
 
-;web servers
-@               IN      A       10.0.21.100
+;docker
+@               IN      A       10.0.20.10
+ns1             IN      A       10.0.20.10
+nas		IN	CNAME	@
+blackskull      IN      CNAME   @
 www             IN      CNAME   @
-plex            IN      CNAME   @
+ntp-a           IN      CNAME   @
 download        IN      CNAME   @
+plex            IN      CNAME   @
+plexstats	IN	CNAME	@
+portainer	IN	CNAME	@
 
-;file share
+;synology file share
 dropzone        IN      A       10.0.20.11
 
 ;unifi wap controller
-unifi           IN      A       10.0.22.10
+unifi           IN      A       10.0.20.12
+
+;hdhomerun tunner
+tvtuner		IN	A	10.0.20.13
