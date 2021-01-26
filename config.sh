@@ -3,16 +3,20 @@
 RESTART_MODE="always"
 #docker restart mode
 
-IMAGE="dns-bind9:latest"
+IMAGE="localhost/dns-bind9:latest"
 #image to use
 
 NAME="ns1"
 #name of container
 
-HNAME="ns1.ogrydziak.net"
-#hostname of container
+NETWORK="SERVERS"
+#container network
 
-DNS="127.0.0.1"
-#local dns server for network
+H_PORT_1="53"
+C_PORT_1=$H_PORT_1
+#dns port to publish to host
+#left repetative for modular purposes
 
-NETWORK="host"
+H_PORT_2=$H_PORT_1
+C_PORT_2=$H_PORT_1
+#for udp variant
