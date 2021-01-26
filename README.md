@@ -6,7 +6,7 @@ This repository allows the user to run and manage an DNS server using BIND9 thro
 
 ## Important Files
 ### [build.sh](https://github.com/notarobot767/dns-bind9/blob/master/build.sh)
-Run this script to build your bind image. This script references to [dockerfile.conf](https://github.com/notarobot767/dns-bind9/blob/master/dockerfile.conf) to build your Podman image. The image is based off [Alpine Linux](https://hub.docker.com/_/alpine) and simply adds the Bind repository with a default entry point of your path to the named.conf.
+Run this script to build your bind image. This script references to [dockerfile.conf](https://github.com/notarobot767/dns-bind9/blob/master/dockerfile.conf) to build your image. The image is based off [Alpine Linux](https://hub.docker.com/_/alpine) and simply adds the Bind repository with a default entry point of your path to the named.conf.
 
 ### [named.conf](https://github.com/notarobot767/dns-bind9/blob/master/config/named.conf)
 This configuration is based off my server so change the configuration to match yours. Within the config folder, your root configuration file must be named named.conf. However you organize and reference the remainder of your configuration is up to you. I split my configuration within the named and zone folder. This repository is not meant to be Bind configuration tutorial. View [this guide](https://bind9.readthedocs.io/en/latest/) or another for your bind setup.
