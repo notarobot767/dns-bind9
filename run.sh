@@ -13,7 +13,6 @@ podman rm $NAME
 
 podman run -d \
   --name $NAME \
-  -h $NAME \
   --network $NETWORK \
   --restart $RESTART_MODE \
   -p $H_PORT_1:$C_PORT_1 \
