@@ -24,6 +24,9 @@ download        IN      CNAME   @
 plex            IN      CNAME   @
 plexstats       IN      CNAME   @
 portainer       IN      CNAME   @
+synclounge      IN      CNAME   @
+files           IN      CNAME   @
+kibana		IN	CNAME	@
 
 ;synology file share
 dropzone        IN      A       10.0.20.11

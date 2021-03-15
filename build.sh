@@ -3,6 +3,6 @@
 cd "${0%/*}"
 #change directory relative to script
 
-podman build -f dockerfile.conf \
+podman build -f ./config/dockerfile.conf \
 	-t dns-bind9 \
 	.

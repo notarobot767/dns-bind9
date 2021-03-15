@@ -9,14 +9,14 @@ IMAGE="localhost/dns-bind9:latest"
 NAME="ns1"
 #name of container
 
-NETWORK="SERVERS"
-#container network
+DNS="127.0.0.1"
+#local dns server for network
 
-H_PORT_1="53"
-C_PORT_1=$H_PORT_1
+LOCAL_LOG="/disk2/logs/bind9"
+REMOTE_LOG="/app/log"
+
+H_PORT="53"
+C_PORT=$H_PORT
 #dns port to publish to host
 #left repetative for modular purposes
-
-H_PORT_2=$H_PORT_1
-C_PORT_2=$H_PORT_1
-#for udp variant
+#dont forget tcp & udp
