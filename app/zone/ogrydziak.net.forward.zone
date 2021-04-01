@@ -1,35 +1,41 @@
 $TTL 1h
-@               IN      SOA     ns1.ogrydziak.net. god.ogrydziak.net. (
-                20210107;       #Serial
-                1h;             #Refresh              #default value in minutes
-                120;            #Retry                #default value in seconds
-                1h;             #Expire               #default value in minutes
-                1h);            #Negative caching TTL #default value in minutes
+@               IN	SOA	ns1.ogrydziak.net.	god.ogrydziak.net. (
+		20210107;	#Serial
+		1h;		#Refresh		#default value in minutes
+		120;		#Retry			#default value in seconds
+		1h;		#Expire			#default value in minutes
+		1h);		#Negative caching TTL	#default value in minutes
 
 ;name servers
-                IN      NS      ns1.ogrydziak.net.
+		IN	NS	ns1.ogrydziak.net.
+		IN	NS	ns2.ogrydziak.net.
+ns1             IN      A       10.0.20.10
+ns2		IN	A	10.0.20.9
 
 ;net infastructure
-gateway         IN      A       10.0.0.255
-switch          IN      A       10.0.20.2
+gateway		IN	A       10.0.0.255
+switch		IN	A       10.0.20.2
 
 ;docker
-@               IN      A       10.0.20.10
-ns1             IN      A       10.0.20.10
-nas             IN      CNAME   @
-blackskull      IN      CNAME   @
-www             IN      CNAME   @
-ntp-a           IN      CNAME   @
-download        IN      CNAME   @
-plex            IN      CNAME   @
-plexstats       IN      CNAME   @
-portainer       IN      CNAME   @
-synclounge      IN      CNAME   @
-files           IN      CNAME   @
+@		IN	A	10.0.20.10
+@		IN	AAAA	2601:100:8181:f9e2:dead:beef:cafe:babe
+blackskull	IN	CNAME	@
+www		IN	CNAME	@
+ntp-a		IN	CNAME	@
+download	IN	CNAME	@
+plex		IN	CNAME	@
+plexstats	IN	CNAME	@
+portainer	IN	CNAME	@
+synclounge	IN	CNAME	@
+files		IN	CNAME	@
 kibana		IN	CNAME	@
+ntp-b		IN	CNAME	ns2
 
 ;synology file share
 dropzone        IN      A       10.0.20.11
 
 ;unifi wap controller
 unifi           IN      A       10.0.20.12
+
+;cisco call manager
+cucm		IN	A	10.0.10.210
