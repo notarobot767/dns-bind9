@@ -11,14 +11,16 @@ $TTL 1h
 		IN	NS	ns2.ogrydziak.net.
 ns1             IN      A       10.0.20.10
 ns2		IN	A	10.0.20.9
+ns1             IN      AAAA    2601:100:8181:f9e2::dead:beef
+ns2		IN	AAAA	2601:100:8181:f9e2::cafe:babe
 
 ;net infastructure
 gateway		IN	A       10.0.0.255
 switch		IN	A       10.0.20.2
 
 ;docker
-@		IN	A	10.0.20.10
-@		IN	AAAA	2601:100:8181:f9e2:dead:beef:cafe:babe
+#primary ip
+@		IN	CNAME	ns1
 blackskull	IN	CNAME	@
 www		IN	CNAME	@
 ntp-a		IN	CNAME	@
@@ -29,6 +31,8 @@ portainer	IN	CNAME	@
 synclounge	IN	CNAME	@
 files		IN	CNAME	@
 kibana		IN	CNAME	@
+
+#secondary ip
 ntp-b		IN	CNAME	ns2
 
 ;synology file share
