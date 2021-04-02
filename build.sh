@@ -7,10 +7,8 @@ source "./config/config.sh"
 docker build \
 	--file "./config/dockerfile.conf" \
 	--tag $IMAGE \
-	--pull \
 	.
 
 #--file: specify dockerfile since in subdirectory
 #--tag: name of the image
-#--pull always pull latest base image
 #https://docs.docker.com/engine/reference/commandline/build/
