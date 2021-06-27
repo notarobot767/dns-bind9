@@ -15,7 +15,6 @@ docker run -d \
   --network $NETWORK \
   -m $MEM_LIMIT \
   --restart $RESTART_MODE \
-  -e TZ=$TZ \
   --dns=$DNS \
   -v $LOCAL_LOG:$REMOTE_LOG \
   -p $BINDING_IP:$H_PORT:$C_PORT \

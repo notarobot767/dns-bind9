@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FROM docker.io/library/ubuntu:latest
+FROM docker.io/library/alpine:latest
 
 LABEL maintainer="notarobot" \
   org.label-schema.name="Bind9 DNS Server" \
@@ -11,19 +11,10 @@ LABEL maintainer="notarobot" \
   org.label-schema.vcs-ref="github.com:notarobot767/dns-bind9.git" \
   org.label-schema.cmd="docker run -d -p 53:53 -p 53:53/udp -e TZ='America/New_York' bind9"
 
-ENV TZ=America/New_York
-#set timezone variable
-#https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-
-RUN export DEBIAN_FRONTEND=noninteractive && \
-  ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
-  apt-get update -y && apt-get upgrade -y && apt-get install -y tzdata && \
-  dpkg-reconfigure --frontend noninteractive tzdata && \
-  #update, upgrade, set timezone
-  \
-  apt-get install -y bind9 && \
-  #install bind package
-  apt-get clean
+RUN apk update && \
+  apk upgrade && \
+  apk add bind
+#https://pkgs.alpinelinux.org/package/edge/main/x86/bind
 
 COPY ./app /app
 #config will live locally on image
@@ -32,8 +23,8 @@ EXPOSE 53/tcp
 EXPOSE 53/udp
 #dns uses both tcp and udp port 53
 
-#ENTRYPOINT ["named", "-f", "-4", "-c"]
-CMD ["named", "-f", "-4", "-c", "/app/named.conf"]
+ENTRYPOINT ["named", "-f", "-4", "-c"]
+CMD ["/app/named.conf"]
 #CMD would allow user to specify alternative config for container instance
 
 #-g #switch to -g to troubleshoot and see output to console when in interactive mode
