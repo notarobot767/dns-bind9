@@ -4,12 +4,11 @@ FROM docker.io/library/ubuntu:latest
 
 LABEL maintainer="notarobot" \
   org.label-schema.name="Bind9 DNS Server" \
-  org.label-schema.name="OG Networks" \
-  org.label-schema.build-date="2020-03-14" \
-  org.label-schema.description="Custom DNS server using Bind9 on Alpine Linux" \
-  org.label-schema.url="https://github.com/notarobot767/dns-bind9" \
-  org.label-schema.vcs-ref="github.com:notarobot767/dns-bind9.git" \
-  org.label-schema.cmd="docker run -d -p 53:53 -p 53:53/udp -e TZ='America/New_York' bind9"
+  org.label-schema.vendor="OG Networks" \
+  org.label-schema.build-date="2021-06-26" \
+  org.label-schema.description="Bind9 DNS Server with Docker Compose" \
+  org.label-schema.url="https://www.ogrydziak.net" \
+  org.label-schema.vcs-ref="https://github.com/notarobot767/dns-bind9"
 
 ENV TZ=America/New_York
 #set timezone variable
@@ -18,12 +17,11 @@ ENV TZ=America/New_York
 RUN export DEBIAN_FRONTEND=noninteractive && \
   ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
   apt-get update -y && apt-get upgrade -y && apt-get install -y tzdata && \
-  dpkg-reconfigure --frontend noninteractive tzdata && \
+  dpkg-reconfigure --frontend noninteractive tzdata
   #update, upgrade, set timezone
-  \
-  apt-get install -y bind9 && \
-  #install bind package
-  apt-get clean
+
+RUN apt-get update -y && apt-get install -y bind9
+#install bind package
 
 COPY ./app /app
 #config will live locally on image
