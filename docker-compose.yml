@@ -10,6 +10,8 @@ services:
     ports:
       - $SRV_IP1:53:53
       - $SRV_IP1:53:53/udp
+      - $SRV_IPV6_1:53:53
+      - $SRV_IPV6_1:53:53/udp
     deploy:
       resources:
         limits:
